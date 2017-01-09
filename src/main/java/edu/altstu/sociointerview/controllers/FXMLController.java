@@ -1,4 +1,4 @@
-package edu.altstu.sociointerview;
+package edu.altstu.sociointerview.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
