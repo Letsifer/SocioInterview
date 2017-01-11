@@ -1,5 +1,11 @@
 package edu.altstu.sociointerview.util;
 
+import edu.altstu.sociointerview.entities.Answer;
+import edu.altstu.sociointerview.entities.Candidate;
+import edu.altstu.sociointerview.entities.Income;
+import edu.altstu.sociointerview.entities.Question;
+import edu.altstu.sociointerview.entities.Respondent;
+import edu.altstu.sociointerview.entities.RespondentAnswer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.SessionFactoryObserver;
@@ -41,7 +47,12 @@ public class HibernateUtil {
     private static Configuration getConfiguration() {
         Configuration configuration = new Configuration();
         //TODO need to add all entites classes to configuration
-//        configuration.addAnnotatedClass(Currency.class);
+        configuration.addAnnotatedClass(Answer.class);
+        configuration.addAnnotatedClass(Candidate.class);
+        configuration.addAnnotatedClass(Income.class);
+        configuration.addAnnotatedClass(Respondent.class);
+        configuration.addAnnotatedClass(RespondentAnswer.class);
+        configuration.addAnnotatedClass(Question.class);
         configuration.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
         configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/interview");
         configuration.setProperty("hibernate.connection.username", "test");
