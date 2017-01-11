@@ -46,7 +46,6 @@ public class HibernateUtil {
     
     private static Configuration getConfiguration() {
         Configuration configuration = new Configuration();
-        //TODO need to add all entites classes to configuration
         configuration.addAnnotatedClass(Answer.class);
         configuration.addAnnotatedClass(Candidate.class);
         configuration.addAnnotatedClass(Income.class);
