@@ -26,7 +26,7 @@ CREATE TABLE interview.respondents_answers(
     
     CONSTRAINT candidate_fk FOREIGN KEY(candidate_id)
     REFERENCES interview.candidates(id)
-    ON DELETE NO ACTION ON UPDATE NO ACTION,
+    ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 COMMENT ON TABLE interview.respondents_answers IS 'Список ответов на вопросы';

@@ -16,7 +16,7 @@ CREATE TABLE interview.respondents(
 
     CONSTRAINT respondent_id PRIMARY KEY(id),
     CONSTRAINT income_fk FOREIGN KEY(income_id)
-    REFERENCES interview.incomes.id
+    REFERENCES interview.incomes(id)
     ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 

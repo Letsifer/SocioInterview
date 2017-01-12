@@ -8,6 +8,7 @@ import edu.altstu.sociointerview.entities.enums.Gender;
 import edu.altstu.sociointerview.entities.enums.HaveCar;
 import edu.altstu.sociointerview.entities.enums.LivingTimeInMoscow;
 import edu.altstu.sociointerview.entities.enums.UsingInternet;
+import edu.altstu.sociointerview.entities.enums.Work;
 import edu.altstu.sociointerview.util.InputUtil;
 
 /**
@@ -27,7 +28,6 @@ public class InputServiceImpl implements InputService{
         InputUtil input = new InputUtil(respondentInfoFilePath);
         int respondentNumber = input.nextInt();
         for (int i = 0; i < respondentNumber; i++) {
-            //TODO check sequency
             Respondent respondent = new Respondent();
             respondent.setPersonalNumber(input.nextInt());
             respondent.setLivingTimeInMoscow(switchLivingTime(input.nextInt()));
@@ -36,8 +36,9 @@ public class InputServiceImpl implements InputService{
             respondent.setEducation(switchEducation(input.nextInt()));
             respondent.setUsingInternet(switchUsingInternet(input.nextInt()));
             respondent.setHaveCar(switchHaveCar(input.nextInt()));
-            respondent.setIncome(incomeService.getIncome(input.nextInt()));
+            respondent.setWork(switchWork(input.nextInt()));
             respondent.setEvaluation(switchEvaluation(input.nextInt()));
+            respondent.setIncome(incomeService.getIncome(input.nextInt()));
             respondentsDao.insertOrUpdateEntity(respondent);
         }
         input.close();
@@ -103,6 +104,23 @@ public class InputServiceImpl implements InputService{
             case 5: return FamityMaterialConditionsEvaluation.VeryBad;
             case 99: return FamityMaterialConditionsEvaluation.HardToSay;
             default: throw new IllegalArgumentException("Do not know such number in evaluation " + value);
+        }
+    }
+    
+    private Work switchWork(int value) throws IllegalArgumentException {
+        switch(value) {
+            case 1: return Work.BudgetNotProduction;
+            case 2: return Work.BudgetProduction;
+            case 3: return Work.Businesmen;
+            case 4: return Work.MerchantNonProduction;
+            case 5: return Work.MerchantProduction;
+            case 6: return Work.WarriorOrPolice;
+            case 7: return Work.NonWorkingPensioner;
+            case 8: return Work.Housewife;
+            case 9: return Work.Student;
+            case 10: return Work.NonWorkig;
+            case 99: return Work.HardToSay;
+            default: throw new IllegalArgumentException("Do not know such number in work " + value);
         }
     }
 }
