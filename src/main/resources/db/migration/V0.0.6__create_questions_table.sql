@@ -6,6 +6,7 @@
 CREATE TABLE interview.questions(
     id serial,
     text varchar,
+    need_candidate bool,
     CONSTRAINT question_id PRIMARY KEY(id)
 );
 

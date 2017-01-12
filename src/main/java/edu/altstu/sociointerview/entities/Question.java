@@ -18,4 +18,5 @@ import lombok.Setter;
 public class Question extends BasicEntity<Integer> {
 
     private String text;
+    private Boolean needCandidate;
 }
