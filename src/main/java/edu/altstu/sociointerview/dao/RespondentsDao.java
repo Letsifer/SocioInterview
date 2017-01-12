@@ -1,7 +1,6 @@
 package edu.altstu.sociointerview.dao;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.hibernate.HibernateQuery;
 import edu.altstu.sociointerview.entities.QRespondent;
 import edu.altstu.sociointerview.entities.Respondent;
