@@ -29,6 +29,8 @@ public class Respondent extends BasicEntity<Integer> {
 
     private Integer personalNumber;
     
+    private Integer age;
+    
     @Enumerated(EnumType.STRING)
     private Gender gender;
     
