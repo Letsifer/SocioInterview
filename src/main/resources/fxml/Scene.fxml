@@ -41,6 +41,16 @@
                   </AnchorPane>
             </content>
           </Tab>
+            <Tab fx:id="addDataTab" text="Внести данные">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="21.0" layoutY="27.0" mnemonicParsing="false" onAction="#addRespsData" prefHeight="37.0" prefWidth="200.0" text="Внести данные о распондентах" />
+                        <Button layoutX="21.0" layoutY="98.0" mnemonicParsing="false" onAction="#addAnsData" prefHeight="37.0" prefWidth="199.0" text="Внести данные об ответах" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
       <Button fx:id="buttonCount" layoutX="25.0" layoutY="250.0" mnemonicParsing="false" onAction="#countData" prefHeight="37.0" prefWidth="624.0" text="Рассчитать" />

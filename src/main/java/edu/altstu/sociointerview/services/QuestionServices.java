@@ -11,5 +11,5 @@ public interface QuestionServices {
     
     List<Question> getAllQuestions();
     
-    Question saveQuestion(String text);
+    Question saveQuestion(String text, boolean needCandidate);
 }

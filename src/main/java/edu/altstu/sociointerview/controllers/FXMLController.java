@@ -10,8 +10,16 @@ import edu.altstu.sociointerview.entities.enums.HaveCar;
 import edu.altstu.sociointerview.entities.enums.LivingTimeInMoscow;
 import edu.altstu.sociointerview.entities.enums.UsingInternet;
 import edu.altstu.sociointerview.entities.enums.Work;
+import edu.altstu.sociointerview.services.AnswerService;
+import edu.altstu.sociointerview.services.AnswerServiceImpl;
+import edu.altstu.sociointerview.services.CandidateService;
+import edu.altstu.sociointerview.services.CandidateServiceImpl;
 import edu.altstu.sociointerview.services.IncomeService;
 import edu.altstu.sociointerview.services.IncomeServiceImpl;
+import edu.altstu.sociointerview.services.InputService;
+import edu.altstu.sociointerview.services.InputServiceImpl;
+import edu.altstu.sociointerview.services.QuestionServiceImpl;
+import edu.altstu.sociointerview.services.QuestionServices;
 import edu.altstu.sociointerview.services.RespondentsService;
 import edu.altstu.sociointerview.services.RespondentsServiceImpl;
 import edu.altstu.sociointerview.util.ChartData;
@@ -31,6 +39,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -93,6 +102,10 @@ public class FXMLController implements Initializable {
 
     private final RespondentsService respondentsService = new RespondentsServiceImpl();
     private final IncomeService incomeService = new IncomeServiceImpl();
+    private final InputService inputService = new InputServiceImpl();
+    private final QuestionServices questionServices = new QuestionServiceImpl();
+    private final AnswerService answerService = new AnswerServiceImpl();
+    private final CandidateService candidateService = new CandidateServiceImpl();
 
     @FXML
     private void countData() {
@@ -188,5 +201,24 @@ public class FXMLController implements Initializable {
 
         type.getItems().addAll(FXCollections.observableArrayList(ChartType.values()));
         type.getSelectionModel().select(0);
+    }
+
+    @FXML
+    private Tab addDataTab;
+    
+    private void addRespsData() {
+        try {
+            inputService.inputRespondentsData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void addAnsData() {
+        try {
+            inputService.inputAnswers();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

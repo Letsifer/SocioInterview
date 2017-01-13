@@ -16,5 +16,5 @@ public interface AnswerService {
     
     Answer getAnswer(Integer id);
     
-    Answer saveAnswer(String text, Question question);
+    Answer saveAnswer(Integer id, String text, Question question);
 }

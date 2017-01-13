@@ -28,13 +28,19 @@ public class RespondentsAnswerDao {
         }
         return -1;
     }
-    
-    public void insertOrUpdateEntityFromSession(RespondentAnswer entity, Session session) {
-        if (entity.getId() == null) {
-            //TODO create ID
-            session.save(entity);
-        } else {
-            session.update(entity);
+
+    public void insertOrUpdateEntityFromSession(RespondentAnswer entity) {
+        try (Session session = HibernateUtil.openSession()) {
+            session.beginTransaction();
+            if (entity.getId() == null) {
+                //TODO create ID
+                session.save(entity);
+            } else {
+                session.update(entity);
+            }
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

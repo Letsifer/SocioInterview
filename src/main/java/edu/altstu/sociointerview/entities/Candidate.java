@@ -19,4 +19,22 @@ public class Candidate extends BasicEntity<Integer> {
 
     private String fio;
     private String description;
+
+    public String getFio() {
+        return fio;
+    }
+
+    public void setFio(String fio) {
+        this.fio = fio;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    
 }

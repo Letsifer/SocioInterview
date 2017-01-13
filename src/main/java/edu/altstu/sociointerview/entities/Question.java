@@ -17,6 +17,22 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Question extends BasicEntity<Integer> {
 
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Boolean getNeedCandidate() {
+        return needCandidate;
+    }
+
+    public void setNeedCandidate(Boolean needCandidate) {
+        this.needCandidate = needCandidate;
+    }
+
     private String text;
     private Boolean needCandidate;
 }

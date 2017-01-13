@@ -49,14 +49,16 @@ public abstract class AbstractDao<T extends BasicEntity<PK>, PK extends Serializ
         return null;
     }
 
-    public void insertOrUpdateEntity(T entity) {
+    public T insertOrUpdateEntity(T entity, PK id) {
         try (Session session = HibernateUtil.openSession()) {
             session.beginTransaction();
-            insertOrUpdateEntityFromSession(entity, session);
+            entity = insertOrUpdateEntityFromSession(entity, id, session);
             session.getTransaction().commit();
+            return entity;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     protected abstract T getEntityFromSession(BooleanExpression expression, Session session);
@@ -65,9 +67,9 @@ public abstract class AbstractDao<T extends BasicEntity<PK>, PK extends Serializ
 
     protected abstract List<T> getListOfEntitiesFromSession(BooleanExpression expression, Session session);
 
-    public T insertOrUpdateEntityFromSession(T entity, Session session) {
+    protected T insertOrUpdateEntityFromSession(T entity, PK id, Session session) {
         if (entity.getId() == null) {
-            //TODO create ID
+            entity.setId(id);
             session.save(entity);
         } else {
             session.update(entity);
