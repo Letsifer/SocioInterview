@@ -6,6 +6,7 @@ package edu.altstu.sociointerview.entities.enums;
  */
 public enum Education {
 
+    UNSELECTED("Не выбран"),
     ElementaryAndNotFinishedSecondary("Начальное и неполное среднее"),
     SecondaryCommonPTU("Среднее общее, ПТУ"),
     SecondarySpecial("Среднее специальное"),

@@ -6,6 +6,7 @@ package edu.altstu.sociointerview.entities.enums;
  */
 public enum UsingInternet {
 
+    UNSELECTED("Не выбран"),
     EveryDay("Практически ежедневно"),
     SometimesWeek("Несколько раз в неделю"),
     SometimesMonth("Несколько раз в месяц"),

@@ -6,6 +6,7 @@ package edu.altstu.sociointerview.entities.enums;
  */
 public enum Work {
     
+    UNSELECTED("Не выбран"),
     BudgetNotProduction("Работаю в бюджетной непроизводственной сфере (образование, здравоохранение, культура, соцзащита)"),
     BudgetProduction("Работаю в бюджетной производственной сфере "),
     Businesmen("Бизнесмен, предприниматель"),

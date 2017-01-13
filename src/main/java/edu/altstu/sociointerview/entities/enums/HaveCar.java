@@ -6,6 +6,7 @@ package edu.altstu.sociointerview.entities.enums;
  */
 public enum HaveCar {
 
+    UNSELECTED("Не выбран"),
     OneCar("Да, есть один автомобиль"), 
     ManyCars("Да, есть более одного автомобиля"), 
     NoCar("Нет"), 

@@ -6,6 +6,7 @@ package edu.altstu.sociointerview.entities.enums;
  */
 public enum LivingTimeInMoscow {
 
+    UNSELECTED("Не выбран"),
     Another("Другой район(город)"),
     LessOne("Менее 1 года"),
     OneToFive("От 1 до 5 лет"),

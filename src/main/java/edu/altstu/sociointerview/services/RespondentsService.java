@@ -2,7 +2,8 @@ package edu.altstu.sociointerview.services;
 
 import edu.altstu.sociointerview.entities.Candidate;
 import edu.altstu.sociointerview.entities.Question;
-import edu.altstu.sociointerview.entities.Respondent;
+import edu.altstu.sociointerview.util.ChartData;
+import edu.altstu.sociointerview.util.RespondentFilter;
 import java.util.List;
 
 /**
@@ -12,9 +13,9 @@ import java.util.List;
  */
 public interface RespondentsService {
     
-    int getRespondentsNumber(Respondent filter);
+    int getRespondentsNumber(RespondentFilter filter);
 
-    List<Integer> getRespondentsAnswers(Respondent filter, Question question);
+    List<ChartData> getRespondentsAnswers(RespondentFilter filter, Question question);
     
-    List<Integer> getRespondentsForCandidate(Respondent filter, Question question, Candidate candidate);
+    List<ChartData> getRespondentsForCandidate(RespondentFilter filter, Question question, Candidate candidate);
 }

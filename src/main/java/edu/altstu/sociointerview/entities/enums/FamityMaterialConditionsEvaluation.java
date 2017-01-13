@@ -6,6 +6,7 @@ package edu.altstu.sociointerview.entities.enums;
  */
 public enum FamityMaterialConditionsEvaluation {
 
+    UNSELECTED("Не выбран"),
     Excellent("Очень хорошее"),
     Good("Хорошее"),
     Average("Среднее"),
