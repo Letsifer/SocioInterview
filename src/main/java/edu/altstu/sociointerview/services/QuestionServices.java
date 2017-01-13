@@ -10,4 +10,6 @@ import java.util.List;
 public interface QuestionServices {
     
     List<Question> getAllQuestions();
+    
+    Question saveQuestion(String text);
 }

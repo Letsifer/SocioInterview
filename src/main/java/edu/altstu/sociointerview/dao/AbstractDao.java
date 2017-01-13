@@ -65,12 +65,13 @@ public abstract class AbstractDao<T extends BasicEntity<PK>, PK extends Serializ
 
     protected abstract List<T> getListOfEntitiesFromSession(BooleanExpression expression, Session session);
 
-    protected void insertOrUpdateEntityFromSession(T entity, Session session) {
+    public T insertOrUpdateEntityFromSession(T entity, Session session) {
         if (entity.getId() == null) {
             //TODO create ID
             session.save(entity);
         } else {
             session.update(entity);
         }
+        return entity;
     }
 }

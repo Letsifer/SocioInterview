@@ -7,4 +7,6 @@ package edu.altstu.sociointerview.services;
 public interface InputService {
 
     void inputRespondentsData() throws Exception;
+    
+    void inputAnswers() throws Exception;
 }

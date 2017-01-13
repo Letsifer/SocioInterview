@@ -1,6 +1,12 @@
 package edu.altstu.sociointerview.services;
 
+import edu.altstu.sociointerview.dao.AnswerDao;
+import edu.altstu.sociointerview.dao.CandidateDao;
+import edu.altstu.sociointerview.dao.QuestionDao;
+import edu.altstu.sociointerview.dao.RespondentsAnswerDao;
 import edu.altstu.sociointerview.dao.RespondentsDao;
+import edu.altstu.sociointerview.entities.Answer;
+import edu.altstu.sociointerview.entities.Question;
 import edu.altstu.sociointerview.entities.Respondent;
 import edu.altstu.sociointerview.entities.enums.Education;
 import edu.altstu.sociointerview.entities.enums.FamityMaterialConditionsEvaluation;
@@ -10,6 +16,11 @@ import edu.altstu.sociointerview.entities.enums.LivingTimeInMoscow;
 import edu.altstu.sociointerview.entities.enums.UsingInternet;
 import edu.altstu.sociointerview.entities.enums.Work;
 import edu.altstu.sociointerview.util.InputUtil;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -18,10 +29,15 @@ import edu.altstu.sociointerview.util.InputUtil;
 public class InputServiceImpl implements InputService{
 
     private RespondentsDao respondentsDao = new RespondentsDao();
+    private RespondentsAnswerDao respondentsAnswerDao = new RespondentsAnswerDao();
+    private QuestionServices questionServices;
+    private AnswerService answerService;
+    private CandidateService candidateService;
     
     private IncomeService incomeService;
     
     private static final String respondentInfoFilePath = "filesystem:${basedir}/src/main/resources/respondents.txt";
+    private static final String answersInfoFilePath = "filesystem:${basedir}/src/main/resources/answers.txt";
     
     @Override
     public void inputRespondentsData() throws Exception{
@@ -44,6 +60,7 @@ public class InputServiceImpl implements InputService{
         input.close();
     }
     
+    //<editor-fold defaultstate="collapsed" desc="input enums">
     private LivingTimeInMoscow switchLivingTime(int value) throws IllegalArgumentException{
         switch(value) {
             case 1: return LivingTimeInMoscow.Another;
@@ -74,7 +91,7 @@ public class InputServiceImpl implements InputService{
             default: throw new IllegalArgumentException("Do not know such number in using internet " + value);
         }
     }
-
+    
     private Education switchEducation(int value) throws IllegalArgumentException {
         switch (value) {
             case 1: return Education.ElementaryAndNotFinishedSecondary;
@@ -123,4 +140,32 @@ public class InputServiceImpl implements InputService{
             default: throw new IllegalArgumentException("Do not know such number in work " + value);
         }
     }
+//</editor-fold>
+
+    @Override
+    public void inputAnswers() throws Exception {
+        InputUtil input = new InputUtil(answersInfoFilePath);
+        int questionsNumber = input.nextInt();
+        int respondentNumber = input.nextInt();
+        for (int i = 0; i < questionsNumber; i++) {
+            String text = input.readLine();
+            Question question = questionServices.saveQuestion(text);
+            boolean needCandidate = input.nextInt() == 1;
+            int answerNumber = input.nextInt();
+            Map<Integer, Answer> answers = new HashMap<>(answerNumber);
+            for (int j = 0; j < answerNumber; j++) {
+                text = input.readLine();
+                Answer answer = answerService.saveAnswer(text, question);
+                answers.put(answer.getId(), answer);
+            }
+            
+            
+            for (int j = 0; j < respondentNumber; j++) {
+                
+            }
+        }
+        input.close();
+    }
+
+    
 }
