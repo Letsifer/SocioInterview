@@ -29,11 +29,11 @@ public class RespondentsAnswerDao {
         return -1;
     }
 
-    public void insertOrUpdateEntityFromSession(RespondentAnswer entity) {
+    public void insertOrUpdateEntityFromSession(RespondentAnswer entity, Integer id) {
         try (Session session = HibernateUtil.openSession()) {
             session.beginTransaction();
             if (entity.getId() == null) {
-                //TODO create ID
+                entity.setId(id);
                 session.save(entity);
             } else {
                 session.update(entity);

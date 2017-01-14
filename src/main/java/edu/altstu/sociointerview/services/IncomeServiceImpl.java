@@ -2,6 +2,7 @@ package edu.altstu.sociointerview.services;
 
 import edu.altstu.sociointerview.dao.IncomeDao;
 import edu.altstu.sociointerview.entities.Income;
+import edu.altstu.sociointerview.entities.QIncome;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ public class IncomeServiceImpl implements IncomeService{
     
     @Override
     public Income getIncome(Integer id) {
-        return incomeDao.getEntity(id);
+        return incomeDao.getEntity(QIncome.income.orderNumber.eq(id));
     }
 
     @Override

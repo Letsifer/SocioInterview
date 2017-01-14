@@ -170,6 +170,8 @@ public class FXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        addResps.setDisable(true);
+        addAns.setDisable(true);
         bar.setVisible(false);
         pie.setVisible(false);
         lowerAge.textProperty().addListener(new ChangeListener<String>() {
@@ -196,7 +198,7 @@ public class FXMLController implements Initializable {
         livingTimeImMoscow.getItems().addAll(FXCollections.observableArrayList(LivingTimeInMoscow.values()));
         works.getItems().addAll(FXCollections.observableArrayList(Work.values()));
         
-        incomes.getItems().add(null);//!!!!
+        //incomes.getItems().add(null);//!!!!
         incomes.getItems().addAll(FXCollections.observableArrayList(incomeService.getAllIncomes()));
 
         type.getItems().addAll(FXCollections.observableArrayList(ChartType.values()));
@@ -206,6 +208,13 @@ public class FXMLController implements Initializable {
     @FXML
     private Tab addDataTab;
     
+    @FXML
+    private Button addResps;
+    
+    @FXML
+    private Button addAns;
+    
+    @FXML
     private void addRespsData() {
         try {
             inputService.inputRespondentsData();
@@ -214,6 +223,7 @@ public class FXMLController implements Initializable {
         }
     }
     
+    @FXML
     private void addAnsData() {
         try {
             inputService.inputAnswers();

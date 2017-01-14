@@ -28,21 +28,21 @@ public class InputServiceImpl implements InputService {
 
     private RespondentsDao respondentsDao = new RespondentsDao();
     private RespondentsAnswerDao respondentsAnswerDao = new RespondentsAnswerDao();
-    private QuestionServices questionServices;
-    private AnswerService answerService;
-    private CandidateService candidateService;
+    private QuestionServices questionServices = new QuestionServiceImpl();
+    private AnswerService answerService = new AnswerServiceImpl();
+    private CandidateService candidateService = new CandidateServiceImpl();
 
-    private IncomeService incomeService;
+    private final IncomeService incomeService = new IncomeServiceImpl();
 
-    private static final String respondentInfoFilePath = "filesystem:${basedir}/src/main/resources/respondents.txt";
-    private static final String answersInfoFilePath1 = "filesystem:${basedir}/src/main/resources/answer1.txt";
-    private static final String answersInfoFilePath2 = "filesystem:${basedir}/src/main/resources/answer2.txt";
-    private static final String answersInfoFilePath3 = "filesystem:${basedir}/src/main/resources/answer3.txt";
-    private static final String answersInfoFilePath4 = "filesystem:${basedir}/src/main/resources/answer4.txt";
-    private static final String answersInfoFilePath5 = "filesystem:${basedir}/src/main/resources/answer5.txt";
-    private static final String answersInfoFilePath6 = "filesystem:${basedir}/src/main/resources/answer6.txt";
-    private static final String answersInfoFilePath7 = "filesystem:${basedir}/src/main/resources/answer7.txt";
-    private static final String answersInfoFilePath8 = "filesystem:${basedir}/src/main/resources/answer8.txt";
+    private static final String respondentInfoFilePath = "src/main/resources/respondents.txt";
+    private static final String answersInfoFilePath1 = "src/main/resources/answer1.txt";
+    private static final String answersInfoFilePath2 = "src/main/resources/answer2.txt";
+    private static final String answersInfoFilePath3 = "src/main/resources/answer3.txt";
+    private static final String answersInfoFilePath4 = "src/main/resources/answer4.txt";
+    private static final String answersInfoFilePath5 = "src/main/resources/answer5.txt";
+    private static final String answersInfoFilePath6 = "src/main/resources/answer6.txt";
+    private static final String answersInfoFilePath7 = "src/main/resources/answer7.txt";
+    private static final String answersInfoFilePath8 = "src/main/resources/answer8.txt";
 
     @Override
     public void inputRespondentsData() throws Exception {
@@ -215,14 +215,15 @@ public class InputServiceImpl implements InputService {
             int answerNumber = input.nextInt();
             Map<Integer, Answer> answers = new HashMap<>(answerNumber);
             for (int j = 0; j < answerNumber; j++) {
-                int id = input.nextInt();
+                int orderNumber = input.nextInt();
                 text = input.readLine();
-                Answer answer = answerService.saveAnswer(id, text, question);
-                answers.put(answer.getId(), answer);
+                Answer answer = answerService.saveAnswer(orderNumber, text, question);
+                answers.put(orderNumber, answer);
             }
             if (needCandidate) {
                 List<Candidate> candidates = candidateService.getAllCandidates();
                 for (int k = 0; k < respondentNumber; k++) {
+                    Respondent respondent = respondentsDao.getEntity(k + 1);
                     for (int j = 0; j < candidates.size(); j++) {
                         int choice = input.nextInt();
                         Answer answer = answers.get(choice);
@@ -230,7 +231,8 @@ public class InputServiceImpl implements InputService {
                         respondentAnswer.setCandidate(candidates.get(j));
                         respondentAnswer.setQuestion(question);
                         respondentAnswer.setAnswer(answer);
-                        respondentsAnswerDao.insertOrUpdateEntityFromSession(respondentAnswer);
+                        respondentAnswer.setRespondent(respondent);
+                        respondentsAnswerDao.insertOrUpdateEntityFromSession(respondentAnswer, IdsPool.getRespAnswerPool().getValue());
                     }
                 }
             } else {
@@ -240,7 +242,8 @@ public class InputServiceImpl implements InputService {
                     RespondentAnswer respondentAnswer = new RespondentAnswer();
                     respondentAnswer.setQuestion(question);
                     respondentAnswer.setAnswer(answer);
-                    respondentsAnswerDao.insertOrUpdateEntityFromSession(respondentAnswer);
+                    respondentAnswer.setRespondent(respondentsDao.getEntity(j + 1));
+                    respondentsAnswerDao.insertOrUpdateEntityFromSession(respondentAnswer, IdsPool.getRespAnswerPool().getValue());
                 }
             }
 

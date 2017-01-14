@@ -33,7 +33,7 @@ public class RespondentsServiceImpl implements RespondentsService {
 
     private RespondentsDao respondentsDao = new RespondentsDao();
     private RespondentsAnswerDao respondetsAnswerDao = new RespondentsAnswerDao();
-    private AnswerDao answerDao = new AnswerDao();
+    private AnswerService answerService = new AnswerServiceImpl();
 
     @Override
     public int getRespondentsNumber(RespondentFilter filter) {
@@ -43,7 +43,7 @@ public class RespondentsServiceImpl implements RespondentsService {
 
     @Override
     public List<ChartData> getRespondentsAnswers(RespondentFilter filter, Question question) {
-        List<Answer> answers = answerDao.getListOfEntities(QAnswer.answer.question().id.eq(question.getId()));
+        List<Answer> answers = answerService.getQuestionsAnswers(question);
         BooleanExpression expression = respondentToPredicate(filter);
         return answers.parallelStream().map(ans -> {
             BooleanExpression modified = QRespondentAnswer.respondentAnswer.answer().id.eq(ans.getId());
@@ -54,7 +54,7 @@ public class RespondentsServiceImpl implements RespondentsService {
 
     @Override
     public List<ChartData> getRespondentsForCandidate(RespondentFilter filter, Question question, Candidate candidate) {
-        List<Answer> answers = answerDao.getListOfEntities(QAnswer.answer.question().id.eq(question.getId()));
+        List<Answer> answers = answerService.getQuestionsAnswers(question);
         BooleanExpression expression = QCandidate.candidate.id.eq(candidate.getId()).and(respondentToPredicate(filter));
         return answers.parallelStream().map(ans -> {
             BooleanExpression modified = QRespondentAnswer.respondentAnswer.answer().id.eq(ans.getId());

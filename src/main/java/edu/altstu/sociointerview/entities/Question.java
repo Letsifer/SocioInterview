@@ -1,5 +1,6 @@
 package edu.altstu.sociointerview.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -34,5 +35,6 @@ public class Question extends BasicEntity<Integer> {
     }
 
     private String text;
+    @Column(name = "need_candidate")
     private Boolean needCandidate;
 }

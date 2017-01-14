@@ -4,6 +4,7 @@ import edu.altstu.sociointerview.dao.AnswerDao;
 import edu.altstu.sociointerview.entities.Answer;
 import edu.altstu.sociointerview.entities.QAnswer;
 import edu.altstu.sociointerview.entities.Question;
+import edu.altstu.sociointerview.util.IdsPool;
 import java.util.List;
 
 /**
@@ -30,10 +31,15 @@ public class AnswerServiceImpl implements AnswerService{
     }
 
     @Override
-    public Answer saveAnswer(Integer id, String text, Question question) {
-        Answer answer = new Answer();
+    public Answer saveAnswer(Integer orderNumber, String text, Question question) {
+        Integer id = IdsPool.getAnswerPool().getValue();
+        Answer answer = getAnswer(id);
+        if (answer == null) {
+            answer = new Answer();
+        }
         answer.setQuestion(question);
         answer.setText(text);
+        answer.setNumber(orderNumber);
         return answerDao.insertOrUpdateEntity(answer, id);
     }
     

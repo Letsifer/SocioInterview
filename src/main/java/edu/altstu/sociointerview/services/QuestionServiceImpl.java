@@ -12,6 +12,11 @@ import java.util.List;
 public class QuestionServiceImpl implements QuestionServices{
 
     private QuestionDao questionDao = new QuestionDao();
+
+    @Override
+    public Question getQuestion(Integer id) {
+        return questionDao.getEntity(id);
+    }
     
     @Override
     public List<Question> getAllQuestions() {
@@ -20,10 +25,14 @@ public class QuestionServiceImpl implements QuestionServices{
 
     @Override
     public Question saveQuestion(String text, boolean needCandidate) {
-        Question question = new Question();
+        Integer id = IdsPool.getQuestionPool().getValue();
+        Question question = getQuestion(id);
+        if (question == null) {
+            question = new Question();
+        }
         question.setText(text);
         question.setNeedCandidate(needCandidate);
-        return questionDao.insertOrUpdateEntity(question, IdsPool.getQuestionPool().getValue());
+        return questionDao.insertOrUpdateEntity(question, id);
     }
     
 }

@@ -1,5 +1,6 @@
 package edu.altstu.sociointerview.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,6 +20,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Answer extends BasicEntity<Integer> {
 
+    @Column(name = "order_number")
+    private Integer number;
+    
     private String text;
     
     @ManyToOne
@@ -40,6 +44,15 @@ public class Answer extends BasicEntity<Integer> {
     public void setQuestion(Question question) {
         this.question = question;
     }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+    
     
     
 }

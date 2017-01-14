@@ -15,7 +15,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ComboBox fx:id="education" layoutX="27.0" layoutY="85.0" prefWidth="150.0" />
+                        <ComboBox fx:id="educations" layoutX="27.0" layoutY="85.0" prefWidth="150.0" />
                         <ComboBox fx:id="haveCars" layoutX="237.0" layoutY="156.0" prefWidth="150.0" />
                         <ComboBox fx:id="incomes" layoutX="237.0" layoutY="85.0" prefWidth="150.0" />
                         <ComboBox fx:id="usingInternet" layoutX="433.0" layoutY="156.0" prefWidth="150.0" />
@@ -45,8 +45,8 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="21.0" layoutY="27.0" mnemonicParsing="false" onAction="#addRespsData" prefHeight="37.0" prefWidth="200.0" text="Внести данные о распондентах" />
-                        <Button layoutX="21.0" layoutY="98.0" mnemonicParsing="false" onAction="#addAnsData" prefHeight="37.0" prefWidth="199.0" text="Внести данные об ответах" />
+                        <Button fx:id="addResps" layoutX="21.0" layoutY="27.0" mnemonicParsing="false" onAction="#addRespsData" prefHeight="37.0" prefWidth="200.0" text="Внести данные о распондентах" />
+                        <Button fx:id="addAns" layoutX="21.0" layoutY="98.0" mnemonicParsing="false" onAction="#addAnsData" prefHeight="37.0" prefWidth="199.0" text="Внести данные об ответах" />
                      </children>
                   </AnchorPane>
               </content>

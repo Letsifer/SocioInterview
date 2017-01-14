@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface QuestionServices {
     
+    Question getQuestion(Integer id);
+    
     List<Question> getAllQuestions();
     
     Question saveQuestion(String text, boolean needCandidate);

@@ -7,6 +7,7 @@ import edu.altstu.sociointerview.entities.enums.HaveCar;
 import edu.altstu.sociointerview.entities.enums.LivingTimeInMoscow;
 import edu.altstu.sociointerview.entities.enums.UsingInternet;
 import edu.altstu.sociointerview.entities.enums.Work;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -24,6 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Respondent extends BasicEntity<Integer> {
 
+    @Column(name = "personal_number")
     private Integer personalNumber;
 
     private Integer age;
@@ -31,15 +33,18 @@ public class Respondent extends BasicEntity<Integer> {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @Column(name = "living_time_in_moscow")
     @Enumerated(EnumType.STRING)
     private LivingTimeInMoscow livingTimeInMoscow;
 
     @Enumerated(EnumType.STRING)
     private Education education;
 
+    @Column(name = "using_internet")
     @Enumerated(EnumType.STRING)
     private UsingInternet usingInternet;
 
+    @Column(name = "have_car")
     @Enumerated(EnumType.STRING)
     private HaveCar haveCar;
 
