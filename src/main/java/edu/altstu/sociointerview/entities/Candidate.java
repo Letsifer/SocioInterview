@@ -35,6 +35,9 @@ public class Candidate extends BasicEntity<Integer> {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+    @Override
+    public String toString() {
+        return fio;
+    }
     
 }

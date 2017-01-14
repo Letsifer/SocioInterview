@@ -17,4 +17,10 @@ public enum Education {
     private Education(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return description;
+    }
+    
 }

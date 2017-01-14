@@ -7,24 +7,33 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="549.0" prefWidth="696.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.altstu.sociointerview.controllers.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="549.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.altstu.sociointerview.controllers.FXMLController">
    <children>
-      <TabPane layoutX="25.0" layoutY="20.0" prefHeight="224.0" prefWidth="624.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="25.0" layoutY="20.0" prefHeight="206.0" prefWidth="624.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="20.0">
         <tabs>
           <Tab text="Данные о респондентах">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <ComboBox fx:id="educations" layoutX="27.0" layoutY="85.0" prefWidth="150.0" />
-                        <ComboBox fx:id="haveCars" layoutX="237.0" layoutY="156.0" prefWidth="150.0" />
+                        <ComboBox fx:id="haveCars" layoutX="238.0" layoutY="134.0" prefWidth="150.0" />
                         <ComboBox fx:id="incomes" layoutX="237.0" layoutY="85.0" prefWidth="150.0" />
-                        <ComboBox fx:id="usingInternet" layoutX="433.0" layoutY="156.0" prefWidth="150.0" />
+                        <ComboBox fx:id="usingInternet" layoutX="433.0" layoutY="134.0" prefWidth="150.0" />
                         <ComboBox fx:id="works" layoutX="434.0" layoutY="85.0" prefWidth="150.0" />
-                        <ComboBox fx:id="evaluations" layoutX="27.0" layoutY="156.0" prefWidth="150.0" />
+                        <ComboBox fx:id="evaluations" layoutX="27.0" layoutY="134.0" prefWidth="150.0" />
                         <TextField fx:id="lowerAge" layoutX="237.0" layoutY="33.0" prefHeight="25.0" prefWidth="61.0" />
                         <TextField fx:id="higherAge" layoutX="330.0" layoutY="33.0" prefHeight="25.0" prefWidth="57.0" />
                         <ComboBox fx:id="livingTimeImMoscow" layoutX="433.0" layoutY="33.0" prefWidth="150.0" />
                         <ComboBox fx:id="genders" layoutX="27.0" layoutY="33.0" prefWidth="150.0" />
+                        <Label layoutX="27.0" layoutY="14.0" text="Пол" />
+                        <Label layoutX="237.0" layoutY="14.0" text="Возраст" />
+                        <Label layoutX="433.0" layoutY="14.0" text="Время проживания в Москве" />
+                        <Label layoutX="27.0" layoutY="68.0" text="Образование" />
+                        <Label layoutX="237.0" layoutY="68.0" text="Доход семьи за месяц" />
+                        <Label layoutX="434.0" layoutY="68.0" text="Основное занятие" />
+                        <Label layoutX="27.0" layoutY="117.0" text="Оценка мат. положения семьи" />
+                        <Label layoutX="237.0" layoutY="117.0" text="Наличие автомобиля" />
+                        <Label layoutX="434.0" layoutY="117.0" text="Пользование интернетом" />
                      </children>
                   </AnchorPane>
             </content>
@@ -33,10 +42,13 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ComboBox fx:id="questions" layoutX="12.0" layoutY="25.0" prefHeight="37.0" prefWidth="596.0" />
-                        <ComboBox fx:id="candidates" layoutX="12.0" layoutY="85.0" prefHeight="25.0" prefWidth="291.0" />
-                        <ComboBox fx:id="type" layoutX="458.0" layoutY="85.0" prefWidth="150.0" />
-                        <TextArea fx:id="description" layoutX="14.0" layoutY="120.0" prefHeight="61.0" prefWidth="416.0" />
+                        <ComboBox fx:id="questions" layoutX="12.0" layoutY="25.0" prefHeight="37.0" prefWidth="596.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="16.0" />
+                        <ComboBox fx:id="candidates" layoutX="12.0" layoutY="85.0" prefHeight="25.0" prefWidth="291.0" AnchorPane.leftAnchor="12.0" />
+                        <ComboBox fx:id="type" layoutX="458.0" layoutY="85.0" prefWidth="150.0" AnchorPane.rightAnchor="16.0" />
+                        <TextArea fx:id="description" layoutX="14.0" layoutY="120.0" prefHeight="50.0" prefWidth="416.0" AnchorPane.leftAnchor="14.0" />
+                        <Label layoutX="14.0" layoutY="6.0" text="Вопрос" />
+                        <Label layoutX="14.0" layoutY="68.0" text="Кандидат" />
+                        <Label layoutX="458.0" layoutY="68.0" text="Тип диаграммы" AnchorPane.rightAnchor="79.0" />
                      </children>
                   </AnchorPane>
             </content>
@@ -46,15 +58,15 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="addResps" layoutX="21.0" layoutY="27.0" mnemonicParsing="false" onAction="#addRespsData" prefHeight="37.0" prefWidth="200.0" text="Внести данные о распондентах" />
-                        <Button fx:id="addAns" layoutX="21.0" layoutY="98.0" mnemonicParsing="false" onAction="#addAnsData" prefHeight="37.0" prefWidth="199.0" text="Внести данные об ответах" />
+                        <Button fx:id="addAns" layoutX="350.0" layoutY="27.0" mnemonicParsing="false" onAction="#addAnsData" prefHeight="37.0" prefWidth="199.0" text="Внести данные об ответах" />
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="buttonCount" layoutX="25.0" layoutY="250.0" mnemonicParsing="false" onAction="#countData" prefHeight="37.0" prefWidth="624.0" text="Рассчитать" />
-      <BarChart fx:id="bar" layoutX="25.0" layoutY="298.0" prefHeight="170.0" prefWidth="624.0">
+      <Button fx:id="buttonCount" layoutX="25.0" layoutY="233.0" mnemonicParsing="false" onAction="#countData" prefHeight="30.0" prefWidth="624.0" text="Рассчитать" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="233.0" />
+      <BarChart fx:id="bar" layoutX="25.0" layoutY="298.0" prefHeight="170.0" prefWidth="624.0" AnchorPane.bottomAnchor="81.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="37.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -62,6 +74,6 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-      <PieChart fx:id="pie" layoutX="25.0" layoutY="298.0" prefHeight="193.0" prefWidth="641.0" />
+      <PieChart fx:id="pie" layoutX="25.0" layoutY="269.0" prefHeight="296.0" prefWidth="624.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="253.0" />
    </children>
 </AnchorPane>

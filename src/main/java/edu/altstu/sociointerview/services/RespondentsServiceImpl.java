@@ -37,8 +37,7 @@ public class RespondentsServiceImpl implements RespondentsService {
 
     @Override
     public int getRespondentsNumber(RespondentFilter filter) {
-//        return respondentsDao.findNumber(respondentToPredicae(filter), session)
-        throw new UnsupportedOperationException("Количество пока не ищется");
+        return respondentsDao.findNumber(respondentToPredicate(filter));
     }
 
     @Override
@@ -79,7 +78,10 @@ public class RespondentsServiceImpl implements RespondentsService {
             exp = andExpression(exp, filter.getHaveCar(), respondent.haveCar);
         }
 
-        exp = andExpression(exp, filter.getIncome().getId(), respondent.income().id);
+        if (filter.getIncome() != null) {
+            exp = andExpression(exp, filter.getIncome().getId(), respondent.income().id);
+        }
+        
 
         if (filter.getLivingTimeInMoscow() != LivingTimeInMoscow.UNSELECTED) {
             exp = andExpression(exp, filter.getLivingTimeInMoscow(), respondent.livingTimeInMoscow);

@@ -5,7 +5,7 @@ package edu.altstu.sociointerview.entities.enums;
  * @author Евгений
  */
 public enum Work {
-    
+
     UNSELECTED("Не выбран"),
     BudgetNotProduction("Работаю в бюджетной непроизводственной сфере (образование, здравоохранение, культура, соцзащита)"),
     BudgetProduction("Работаю в бюджетной производственной сфере "),
@@ -18,12 +18,16 @@ public enum Work {
     Student("Учащийся, студент (дневного отделения)"),
     NonWorkig("Безработный, ищу работу"),
     HardToSay("Затрудняюсь ответить /Отказ от ответа");
-    
+
     private String description;
 
     private Work(String description) {
         this.description = description;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return description;
+    }
+
 }

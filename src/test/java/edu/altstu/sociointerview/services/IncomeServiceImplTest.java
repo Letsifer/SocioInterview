@@ -52,18 +52,18 @@ public class IncomeServiceImplTest {
     /**
      * Test of getAllIncomes method, of class IncomeServiceImpl.
      */
-    @Test
-    public void testGetAllIncomes() {
-        System.out.println("getAllIncomes");
-        IncomeServiceImpl instance = new IncomeServiceImpl();
-//        List<Income> expResult = null;
-        List<Income> result = instance.getAllIncomes();
-        for (Income res : result) {
-            System.out.println(res.getId() + " " + res.getText());
-        }
-//        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-    }
+//    @Test
+//    public void testGetAllIncomes() {
+//        System.out.println("getAllIncomes");
+//        IncomeServiceImpl instance = new IncomeServiceImpl();
+////        List<Income> expResult = null;
+//        List<Income> result = instance.getAllIncomes();
+//        for (Income res : result) {
+//            System.out.println(res.getId() + " " + res.getText());
+//        }
+////        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+////        fail("The test case is a prototype.");
+//    }
     
 }

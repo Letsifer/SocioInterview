@@ -7,9 +7,9 @@ package edu.altstu.sociointerview.entities.enums;
 public enum HaveCar {
 
     UNSELECTED("Не выбран"),
-    OneCar("Да, есть один автомобиль"), 
-    ManyCars("Да, есть более одного автомобиля"), 
-    NoCar("Нет"), 
+    OneCar("Да, есть один автомобиль"),
+    ManyCars("Да, есть более одного автомобиля"),
+    NoCar("Нет"),
     HardToSay("Затрудняюсь ответить");
 
     private String description;
@@ -17,4 +17,10 @@ public enum HaveCar {
     private HaveCar(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return description;
+    }
+
 }

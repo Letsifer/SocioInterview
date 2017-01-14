@@ -16,7 +16,7 @@ public class RespondentsAnswerDao {
     public int getCountWithExpression(BooleanExpression expression) {
         try (Session session = HibernateUtil.openSession()) {
             session.beginTransaction();
-            int number = new HibernateQuery<RespondentAnswer>()
+            int number = new HibernateQuery<>(session)
                     .from(QRespondentAnswer.respondentAnswer)
                     .where(expression)
                     .fetch()

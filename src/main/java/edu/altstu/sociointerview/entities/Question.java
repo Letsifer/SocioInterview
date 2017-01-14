@@ -37,4 +37,9 @@ public class Question extends BasicEntity<Integer> {
     private String text;
     @Column(name = "need_candidate")
     private Boolean needCandidate;
+    
+    @Override
+    public String toString() {
+        return text;
+    }
 }

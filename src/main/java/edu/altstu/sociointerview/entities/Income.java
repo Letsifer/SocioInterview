@@ -20,7 +20,7 @@ public class Income extends BasicEntity<Integer> {
 
     @Column(name = "order_number")
     private Integer orderNumber;
-    
+
     @Column(name = "lower_border")
     private Integer lowerBorder;
 
@@ -36,5 +36,10 @@ public class Income extends BasicEntity<Integer> {
     public void setText(String text) {
         this.text = text;
     }
-    
+
+    @Override
+    public String toString() {
+        return text;
+    }
+
 }

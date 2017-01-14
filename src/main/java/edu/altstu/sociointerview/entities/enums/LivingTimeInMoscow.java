@@ -19,4 +19,9 @@ public enum LivingTimeInMoscow {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return description;
+    }
+
 }

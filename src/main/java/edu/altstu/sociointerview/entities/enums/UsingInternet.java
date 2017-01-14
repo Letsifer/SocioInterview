@@ -19,4 +19,10 @@ public enum UsingInternet {
     private UsingInternet(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return description;
+    }
+
 }
