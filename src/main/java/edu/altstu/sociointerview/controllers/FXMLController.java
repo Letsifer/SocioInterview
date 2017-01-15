@@ -24,7 +24,7 @@ import edu.altstu.sociointerview.util.ChartData;
 import edu.altstu.sociointerview.util.RespondentFilter;
 import edu.altstu.sociointerview.util.StringUtils;
 import java.net.URL;
-import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -35,6 +35,8 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
+import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
@@ -44,6 +46,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class FXMLController implements Initializable {
 
@@ -84,7 +87,7 @@ public class FXMLController implements Initializable {
 
     //<editor-fold defaultstate="collapsed" desc="controls from second page">
     @FXML
-    private BarChart bar;
+    private BarChart<String, Number> bar;
 
     @FXML
     private PieChart pie;
@@ -106,11 +109,8 @@ public class FXMLController implements Initializable {
     private final IncomeService incomeService = new IncomeServiceImpl();
     private final InputService inputService = new InputServiceImpl();
     private final QuestionServices questionServices = new QuestionServiceImpl();
-//    private final AnswerService answerService = new AnswerServiceImpl();
     private final CandidateService candidateService = new CandidateServiceImpl();
 
-//    private DecimalFormat decimalFormat = new DecimalFormat(pattern)
-    
     @FXML
     private void countData() {
         if (questions.getValue() == null) {
@@ -154,12 +154,6 @@ public class FXMLController implements Initializable {
 
         int respondentNumber = respondentsService.getRespondentsNumber(filter);
         String title = "Количество респондентов: " + respondentNumber;
-//        if (asked.getNeedCandidate()) {
-//            Candidate candidate = candidates.getValue();
-//            title = asked.getText() + " " + candidate.getId() + " (" + candidate.getFio() + ")";
-//        } else {
-//            title = asked.getText();
-//        }
 
         if (type.getSelectionModel().getSelectedIndex() == 0) {
             pie.setVisible(true);
@@ -188,14 +182,29 @@ public class FXMLController implements Initializable {
             pie.setVisible(false);
             bar.setVisible(true);
 
-            XYChart.Series answers = new XYChart.Series();
-            answers.setData(FXCollections.observableArrayList(
-                    data
-                            .stream()
-                            .map(piece -> new XYChart.Data<>(piece.getLegend(), piece.getNumber()))
-                            .collect(Collectors.toList())
-            ));
+            List<XYChart.Series<String, Number>> answers = data
+                    .stream()
+                    .map(piece -> new XYChart.Data<String, Number>(piece.getLegend(), piece.getNumber()))
+                    .map(piece -> {
+                        XYChart.Series<String, Number> chart = new XYChart.Series<String, Number>(FXCollections.observableArrayList(piece));
+                        int value = chart.dataProperty().getValue().get(0).getYValue().intValue();
+                        chart.setName(
+                                chart.dataProperty().getValue().get(0).getXValue()
+                                + " "
+                                + value
+                                + "("
+                                + String.format("%.2f", 100.0 * value / respondentNumber)
+                                + ")"
+                        );
+                        chart.dataProperty().getValue().get(0).setXValue("");
+                        return chart;
+                    })
+                    .collect(Collectors.toList());
+
             bar.setTitle(title);
+            bar.getData().clear();
+            bar.getData().addAll(answers);
+            bar.setLegendSide(Side.LEFT);
         }
     }
 

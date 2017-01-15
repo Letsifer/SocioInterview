@@ -66,7 +66,7 @@
         </tabs>
       </TabPane>
       <Button fx:id="buttonCount" layoutX="25.0" layoutY="233.0" mnemonicParsing="false" onAction="#countData" prefHeight="30.0" prefWidth="624.0" text="Рассчитать" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="233.0" />
-      <BarChart fx:id="bar" layoutX="25.0" layoutY="298.0" prefHeight="170.0" prefWidth="624.0" AnchorPane.bottomAnchor="81.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="37.0">
+      <BarChart fx:id="bar" layoutX="25.0" layoutY="298.0" prefHeight="288.0" prefWidth="624.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="37.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
